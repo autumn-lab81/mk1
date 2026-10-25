@@ -739,7 +739,7 @@ class Model implements Iterator, Countable, ArrayAccess
      * @throws MkException
      * @see Model::after_load()
      */
-    function reload(array $ignore_conditions = null)
+    function reload(?array $ignore_conditions = null)
     {
         $query = $this->_build_select_query();
         $id_field = static::primary_key();

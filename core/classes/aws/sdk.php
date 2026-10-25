@@ -148,7 +148,7 @@ class Aws_Sdk
         return $client;
     }
 
-    function get_dynamodb_client(string $endpoint = null): \Aws\DynamoDb\DynamoDbClient
+    function get_dynamodb_client(?string $endpoint = null): \Aws\DynamoDb\DynamoDbClient
     {
         $config = $this->get_aws_sdk_config();
 

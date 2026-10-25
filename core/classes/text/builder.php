@@ -20,7 +20,7 @@ class Text_Builder
         return $this;
     }
 
-    function line_separator(string $seprator = null)
+    function line_separator(?string $seprator = null)
     {
         if ($seprator !== null) {
             $this->line_separator = $seprator;
@@ -29,7 +29,7 @@ class Text_Builder
         return $this->line_separator;
     }
 
-    function build(array $data = null): string // Text_Definition_Listがフォーマットを行う場合のためにデータの指定も受け付ける
+    function build(?array $data = null): string // Text_Definition_Listがフォーマットを行う場合のためにデータの指定も受け付ける
     {
         $lines = [];
 

@@ -40,7 +40,8 @@ class ImageErrorException extends MkException { }
 
 set_error_handler(function ($errno, $errstr, $errfile, $errline) {
     //echo "errno=$errno / ".error_reporting()."<HR>";
-    if (error_reporting() & $errno) {    // ←ここを無効にするとSmartyが新規にコンパイルした中間コードを保存する際にエラーが起きる
+    // PHP 8.4対応: E_DEPRECATED / E_USER_DEPRECATED は例外化せずログ記録のみとする
+    if ((error_reporting() & $errno) && !($errno & (E_DEPRECATED | E_USER_DEPRECATED))) {    // ←ここを無効にするとSmartyが新規にコンパイルした中間コードを保存する際にエラーが起きる
         throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
         exit;
     }

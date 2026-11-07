@@ -420,6 +420,6 @@ class Log
 
     public static function __callStatic($name, $arguments)
     {
-        return call_user_func_array(['static', 'log'], array_merge([$name], $arguments));
+        return call_user_func_array([static::class, 'log'], array_merge([$name], $arguments));
     }
 }

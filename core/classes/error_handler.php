@@ -30,7 +30,8 @@ class ErrorHandler
     static function shutdown_handler()
     {
         $last_error = error_get_last();
-        if ($last_error) {
+        // PHP 8.4対応: E_DEPRECATED / E_USER_DEPRECATED はシャットダウン時の500トリガーから除外
+        if ($last_error && !($last_error['type'] & (E_DEPRECATED | E_USER_DEPRECATED))) {
             $e = new Exception();
             Log::error($last_error, "\n".$e->getTraceAsString());
             foreach (Arr::merge(static::$shutdown_handler, static::$error_handler) as $function) {
